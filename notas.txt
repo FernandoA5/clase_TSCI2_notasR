@@ -1,0 +1,45 @@
+
+DERRAPE:
+Number of Samples:      126854
+Duration (seconds):     5.29
+Samplingrate (Hertz):   24000
+Channels (Mono/Stereo): Mono
+PCM (integer format):   TRUE
+Bit (8/16/24/32/64):    16 
+
+Guitarra:
+Wave Object
+Number of Samples:      454511
+Duration (seconds):     10.31
+Samplingrate (Hertz):   44100
+Channels (Mono/Stereo): Mono
+PCM (integer format):   TRUE
+Bit (8/16/24/32/64):    16 
+
+CAMION:
+Wave Object
+Number of Samples:      92928
+Duration (seconds):     8.43
+Samplingrate (Hertz):   11025
+Channels (Mono/Stereo): Mono
+PCM (integer format):   TRUE
+Bit (8/16/24/32/64):    16 
+
+FUEGO:
+Wave Object
+Number of Samples:      409007
+Duration (seconds):     25.56
+Samplingrate (Hertz):   16000
+Channels (Mono/Stereo): Mono
+PCM (integer format):   TRUE
+Bit (8/16/24/32/64):    16
+
+
+TREN:
+Wave Object
+Number of Samples:      86982
+Duration (seconds):     7.89
+Samplingrate (Hertz):   11025
+Channels (Mono/Stereo): Mono
+PCM (integer format):   TRUE
+Bit (8/16/24/32/64):    16 
