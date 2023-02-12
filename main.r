@@ -43,11 +43,11 @@ plot(tren_p, main="Periodogram Tren")
 
 #BAJAR LA FRECUENCIA DE MUESTREO
 derrape
-derrape_c <- derrape
-derrape_c.downsampled <- downsample(derrape_c, samp.rate =11050)
-derrape_c.downsampled@samp.rate
+derrape_downsampled <- downsample(derrape, samp.rate = 11050)
 
+derrape_downsampled
 derrape
+
 derrape_c
-derrape.oversampled <- resamp(derrape, g="")
+derrape_oversampled <- resample(derrape_downsampled, 24000)
 
