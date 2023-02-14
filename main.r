@@ -43,11 +43,13 @@ plot(tren_p, main="Periodogram Tren")
 
 #BAJAR LA FRECUENCIA DE MUESTREO
 derrape
-derrape_downsampled <- downsample(derrape, samp.rate = 11050)
+derrape.downsampled <- downsample(derrape, samp.rate = 11050)
+derrape #ESTA MUESTRA LA VARIABLE ORIGINAL CON SU SAMPLE RATE ORIGINAL
+derrape.downsampled #AQUÍ YA SE MUESTRA EL SAMPLE RATE CAMBIADO
+#RESAMPLEAR LA FRECUENCIA DE MUESTREO
+library("seewave")
+derrape.resampled<- resamp(derrape.downsampled, f= 11050, g=24000, output="Wave")
+derrape.resampled
 
-derrape_downsampled
-derrape
-
-derrape_c
-derrape_oversampled <- resample(derrape_downsampled, 24000)
-
+oscillo(derrape_down, title="derrape_down")
+oscillo(derrape_resampled, title="derrape_resamp")
