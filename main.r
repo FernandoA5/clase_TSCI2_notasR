@@ -46,10 +46,49 @@ derrape
 derrape.downsampled <- downsample(derrape, samp.rate = 11050)
 derrape #ESTA MUESTRA LA VARIABLE ORIGINAL CON SU SAMPLE RATE ORIGINAL
 derrape.downsampled #AQUÍ YA SE MUESTRA EL SAMPLE RATE CAMBIADO
+guitarra
+guitarra.downsampled <- downsample(guitarra, samp.rate = 11050)
+
 #RESAMPLEAR LA FRECUENCIA DE MUESTREO
 library("seewave")
 derrape.resampled<- resamp(derrape.downsampled, f= 11050, g=24000, output="Wave")
 derrape.resampled
 
-oscillo(derrape_down, title="derrape_down")
-oscillo(derrape_resampled, title="derrape_resamp")
+oscillo(derrape.downsampled, title="derrape_down")
+oscillo(derrape.resampled, title="derrape_resamp")
+
+derrape_d_p <- periodogram(derrape.downsampled)
+plot(derrape_d_p, main="Periodogram Derrape_downsample")
+
+derrape_r_p <- periodogram(derrape.resampled)
+plot(derrape_r_p, main="Periodogram Derrape_resampled")
+
+#AUTOC >> ESTA COSA MUESTRA LOS ARMÓNICOS Y LA FRECUENCIA FUNDAMENTAL
+autoc(derrape.downsampled)
+autoc(guitarra, main="Autoc Guitarra")
+autoc(orni, main="Orni")  #2kHz con un armónico de 4.
+
+#PARA SACAR LOS VALORES EXACTOS SE SACA LA ONDA COMO DATAFRAME  OBTENER COMO CSV 
+#ESTO MUESTRA LOS VALORES PERO NO SE VE VISUALMENTE LOS ARMÓNICOS NI LA FRECUENCIA FUNDAMENTAL
+#ESO HAY QUE DETERMINARLO MANUALMENTE  (TOLERANCIA +- 10%)
+autoc_orni <- autoc(orni)
+write.csv(autoc_orni, file="orni.csv")
+
+
+#SETEAMOS EL WORK DIRECTORY
+setwd("/home/alcss/Documentos/Programación/Clase")
+#ALMACENAMOS EL CSV EN UN DATAFRAME
+datos <- read.csv("orni.csv")
+datos
+
+nota_fundamental <- min(datos$y)
+
+nota_fundamental
+
+
+
+
+
+#BUSCAR AUDIO DE ESCALA NOTAL
+
+
