@@ -85,10 +85,50 @@ nota_fundamental <- min(datos$y)
 
 nota_fundamental
 
-
-
-
-
 #BUSCAR AUDIO DE ESCALA NOTAL
 
 
+#FILTROS DE FRECUENCIA
+#pág: 478
+
+#Filtos: low-pass, high-pass, band-pass.
+
+#ffilter de seewave
+
+
+#por cada filtro hacer un periodogram
+der_per <- periodogram(derrape)
+plot(der_per, main="Periodogram Derrape Original")
+library("seewave")
+der_filt <- ffilter(derrape, from=5000, to=30000, bandpass=TRUE, output="Wave")
+
+der_filt
+#oscillo(der_filt, title="Oscillograma Derrape filtrado")
+der_filt_per <- periodogram(der_filt)
+plot(der_filt_per, main="Periodogram Derrape Filtrado")
+
+guitar_per <- periodogram(guitarra)
+plot(guitar_per, main="Periodogram Guitarra Original")
+guitar_filt <- ffilter(guitarra, from=500, to=3100, bandpass=TRUE, output="Wave")
+guitar_filt
+#oscillo(guitar_filt, title="Osicllograma Guitarra Filtrado")
+guitar_filt_per <- periodogram(guitar_filt)
+plot(guitar_filt_per, main="Periodogram Guitarra Filtrado")
+
+camion_per <- periodogram(camion)
+plot(camion_per, main="Periodogram Camion Original")
+camion_filt <- ffilter(camion, from=0, to=1000, bandpass=TRUE, output="Wave")
+camion_filt
+camion_filt_per <- periodogram(camion_filt)
+plot(camion_filt_per, main="Periodogram Camion Filtrado")
+#Escuchar despues de flitrar
+
+#DEL GRUPO E USAR LOS CUATRO FILTROS EN UN AUDIO Y GENERAR 4 AUDIOS DE SALIDA
+#AUDIO-E3: Loreen - Statements
+#HACER LOS 4 TIPOS DE FILTROS DE BANDA
+
+loreen <- readWave(file.choose()) #48000Hz, 181.84s
+loreen
+#derrape.downsampled <- downsample(derrape, samp.rate = 11050)
+loreen.downsampled <- downsample(loreen, samp.rate = 24000)
+oscillo(loreen.downsampled, title="Oscillograma Loreen")
