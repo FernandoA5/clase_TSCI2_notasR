@@ -20,7 +20,7 @@ oscillo(camion, title="CAMION")
 oscillo(fire, fastdisp=TRUE, title="FIRE")
 oscillo(tren, title="TREN")
 
-#ESTO SE HIZO EN LA CLASE
+#PERIODOGRAM
 data(orni)
 s<-orni
 oscillo(orni, title="Oscillogram Orni")
@@ -123,12 +123,30 @@ camion_filt_per <- periodogram(camion_filt)
 plot(camion_filt_per, main="Periodogram Camion Filtrado")
 #Escuchar despues de flitrar
 
+#AUDIOS NUESTROS BANDA DE BARK 8000 a 9200 -> aplicamos periodogram y obtenemos la frecuencia
+#De aparición de cada frecuencia de ruido, (aplicamos un arbol de huffman en eso)
+#Agregar al final la códificicación
+guitar_bark <- ffilter(guitarra, from=8000, to=9200, bandpass=TRUE, output="Wave")
+guitar_bark_per <- periodogram(guitar_bark)
+#APARENTEMENTE LA GUITARRA NO TIENE FRECUENCIAS EN ESE RANGO (8000,9200)
+
+derrape_bark <- ffilter(derrape, from=8000, to=9200, bandpass=TRUE, output="Wave")
+derrape_bark_per <- periodogram(derrape_bark)
+
+plot(guitar_per, main="Periodogram Guitarra")
+plot(guitar_bark_per, main="Periodogram Guitarra Bark")
+
+plot(derrape_bark_per, main="Periodogram Derrape")
+
+
+#PARA GUARDAR EL WAVE MODIFICADO COMO UN ARCHIVO .wav usamos
+#writeWave(sonido_mod, "sonido_mod.wav")  USAMOS ESTA NOTACIÓN
+
 #DEL GRUPO E USAR LOS CUATRO FILTROS EN UN AUDIO Y GENERAR 4 AUDIOS DE SALIDA
 #AUDIO-E3: Loreen - Statements
 #HACER LOS 4 TIPOS DE FILTROS DE BANDA
 
 loreen <- readWave(file.choose()) #48000Hz, 181.84s
 loreen
-#derrape.downsampled <- downsample(derrape, samp.rate = 11050)
 loreen.downsampled <- downsample(loreen, samp.rate = 24000)
 oscillo(loreen.downsampled, title="Oscillograma Loreen")

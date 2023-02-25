@@ -19,3 +19,6 @@ plot(do5_spec)
 dfDo5 <- as.data.frame(do5_spec)
 max(dfDo5)
 min(dfDo5)
+
+
+
