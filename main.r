@@ -30,7 +30,7 @@ plot(sound1p, main="Periodogram Orni")
 
 #Eje Y en periodogram: frecuencia de la frecuencia
 
-derrape_p <- periodogram(derrape)
+derrape.per <- periodogram(derrape)
 plot(derrape_p, main="Periodogram Derrape")
 guitarra_p <- periodogram(guitarra)
 plot(guitarra_p, main="Periodogram Guitarra")
@@ -150,3 +150,39 @@ loreen <- readWave(file.choose()) #48000Hz, 181.84s
 loreen
 loreen.downsampled <- downsample(loreen, samp.rate = 24000)
 oscillo(loreen.downsampled, title="Oscillograma Loreen")
+
+#CONVERTIR PERIODOGRAM EN DATAFRAME
+p<- derrape_bark_per
+p
+df <- data.frame(frequency = p@freq, spec = p@spec)
+df
+
+
+
+#analizar relacion de spec con oscilo y periodogram
+library("seewave")
+oscillo(derrape, title="Oscillo Derrape") #Amplitud vs Tiempo
+plot(derrape.per) #Frecuencia de las frecuencias (normalized periodograma vs Frequencia)
+derrape.spec <- spec(derrape) #Amplitud vs Frecuencia
+
+#para pasar del dominio del tiempo a la frecuencia se utiliza un escalon de transformación
+#En este caso el escalon de paso es un espectrograma, spec pasa lo que vemos en oscillo a lo
+#que vemos en periodogram (distancias estadísticas)
+
+#wave, Wspec, spec
+#capitulo 4 del libro manipulación de audios.
+
+#APLICACIÓN DE ESO A LOS AUDIOS
+
+#Documentación de seewave: fpeaks. 
+#Aparentemente fpeaks puede llegar a consumir muchos recursos, para solucionar eso.
+#Se baja el sample rate, pero con el cuidado de tener en cuenta las frecuencias
+#presentes en el audio. #ATENCIÓN: La salida es una matriz de cada pico, su amplitud y su frecuencia.
+derrape.fpeaks <- fpeaks(derrape.spec, plot = TRUE)
+derrape
+plot(derrape.fpeaks, main="Derrape fpeaks")
+derrape.fpeaks
+#Frecuenciad dominante puede ser útil: dfreq(), sirve para algo parecido, pero toma un wave
+dfreq(derrape, plot=TRUE)
+#FRECUENCIA DOMINANTE: el audio principal, (nos puede servir para poder aislarla)
+
