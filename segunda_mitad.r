@@ -177,12 +177,48 @@ NDSI(sdspec) #Esto da -0.7975702
 #Si cambiamos el parametro (fftw= TRUE) nos da la otra cosa de la página 125, que es el absoluto
 #Absoluto vs Hilbert
 
-env(derrape) #Por default ya hace lo de Hilbert
-env(derrape, envt = "abs")
+env(derrape, title="Hilbert") #Por default ya hace lo de Hilbert
+env(derrape, envt = "abs", title="Absolute")
+
+#Carajo hay algo sobre ventanas deslizantes
+#aquí hay algo llamado ovlp = 0%, y así hasta 100.
+#hay tres tipos de cosas Medias moviles, sumas moviles y kernel móviles, vienen a partir de la página 
+#131  (5.2.3)
+#ACTIVIDAD, HACER TABLA
+#En que son iguales, en que son diferentes y cuando usar cada uno
+#No es con audios ni con R, solo es compararlo con la información del libro.
+#A mayor porcentaje de ovlp, mas fragmento de la ventana se re-analizará, y aparentemente:
+#Eso lo hace más eficiente porque ya tiene esa parte computada.
 
 
+#Hacer envolturas a todas las canciones que nos tocaron. Vimos 3 tipos de smooth, pues elije la
+#correcta para cada canción. (Los smoot son las cosas esas de Médias móviles, súmas moviles y kernel moviles)
+loreen <- readWave(file.choose())
+loreen.cut <- cutw(loreen, from=0, to=30, output = "Wave")
+loreen.cut
+env(lo)
+
+#Consejo: Aplicar los 3 tipos de cosas a la mísma sección de audio para ver las diferencias (en la prueba no en la cosa final de hacer eso para todos los audios).
 
 
+#PIA: la sesión de revisión dura 15 minutos, entonces lo que sea que mostremos no debe demorar más que eso.I mean: El proceso.
+#Seleccionará muestras y debemos hacer el procesamiento.
+#Límite de tiempo 3 días. Mientras tanto, podemos seguir solicitando revisiones.
 
+#Hay que leer bien nuestro documento
+#Hay que documentar muy bien nuestros audios.
+  #Documentar contexto del audio. (la graduación utilizada en el paper, y contexto de grabación)
+#El profe tratará de romper nuestro sistema.
+
+#El día del ordinario se puede empezar a agendar cita. (Lunes martes y miércoles)
+#Recuerda que el PIA se entrega antes en el laboratorio, entonces toma la info anterior con pinzas.
+
+#Para reducir el tiempo en el env es lo de los tipos de smooth.
+
+#Sintesis aditiva.
+#Para el Miercoles:
+#Cada quien elije un sonido de 8bits de el videojuego que nos venga en gana. 5 segundos.
+#TIP: busca uno simple
+#Una vez conocidas las envolturas conocemos los componentes de un audio.
 
 
